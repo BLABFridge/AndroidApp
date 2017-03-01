@@ -1,0 +1,1 @@
+ping -f google.ca
