@@ -1,0 +1,35 @@
+Array getExpiring(int daysTillExpired){
+	for(item in fridge){
+		if(item.expiresInDays()<daysTillExpired){
+			//put in list
+		}
+	}
+}
+
+Array sortList(array[] array){
+	while(int x=0){
+		size = array.getSize();
+		for(i=0; i<array.getSize(); i++){
+			a = array[i];
+			b = array[i+1];
+			if(a.expiresInDays()<b.expiresInDays()){
+				temp = a;
+				array[i] = b;
+				array[i+1] = temp;
+			}
+		}
+		dummyVar = 0;
+		for(j=0; j<array.getSize(); j++){
+			if(array[j]<array[j+1]){
+				dummyVar++;
+			}
+		}
+		if(dummyVar == size){
+			x = 1;
+		}
+	}
+}
+
+Array getExpiringList(Int daysTillExpired){
+	return sortList(getExpiring(daysTillExpired));
+}
