@@ -1,11 +1,13 @@
 import java.net.DatagramSocket;
 import java.net.DatagramPacket;
 import java.net.SocketException;
+import java.io.IOException;
 
 class UDPListener extends Thread{
 
 	public static final int listenPort = 1078;
 	public static final byte packetDelimeter = '?';
+	public static final String packetDelimeterMatchRegex = "\\?";
 
 	//private Class c
 	private DatagramSocket sock;
@@ -21,8 +23,8 @@ class UDPListener extends Thread{
 
 	static String getStringFromByteArray(byte[] arr, int indexOfString){
 		String s = new String(arr);
-		String[] strings = s.split();
-		return strings[i];
+		String[] strings = s.split(UDPListener.packetDelimeterMatchRegex);
+		return strings[indexOfString];
 	}
 
 	public void run(){
@@ -33,10 +35,17 @@ class UDPListener extends Thread{
 			///MORE BAD THINGS AAAAH
 		}
 
-		byte[] buf = p.getBytes();
+		byte[] buf = p.getData();
+
+		p.setSocketAddress(p.getSocketAddress()); //this might actually be redundant (it certainly looks redundant), prep the packet for responding to the sender
 		switch(buf[0]){
-			case '5': 
-			//c.notify(getStringFromByteArray(buf, 1));
+			case '5':  //this is a notification from the fridgecontroller, create a notification and send it
+				//c.notify(getStringFromByteArray(buf, 1));
+				break;
+			case '6'://whatever was scanned does not exist, open a prompt allowing the user to input credentials, to be sent back in a 7 packet
+				String tagCode = getStringFromByteArray(buf, 1); //the first argument in a 6 packet is the tagcode that is missing - the user doesn't really need this but might as well
+				//FoodItemCreator.createFoodItem(tagCode);
+				break;
 			break;
 
 		}
