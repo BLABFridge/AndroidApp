@@ -44,9 +44,15 @@ class UDPListener extends Thread{
 				break;
 			case '6'://whatever was scanned does not exist, open a prompt allowing the user to input credentials, to be sent back in a 7 packet
 				String tagCode = getStringFromByteArray(buf, 1); //the first argument in a 6 packet is the tagcode that is missing - the user doesn't really need this but might as well
-				//FoodItemCreator.createFoodItem(tagCode);
+				byte[] foodItemAsByteArray = null; //= FoodItemCeator.createFoodItem().to1Packet(); //BEN createFoodItem() is whatever method you decide to call to get the user to create a food item
+				p.setData(foodItemAsByteArray);
+				try{
+					sock.send(p);
+				} catch (IOException e){
+					System.out.println("Failed to send a packet");
+				}
 				break;
-			break;
+			default: break;
 
 		}
 
