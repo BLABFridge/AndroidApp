@@ -8,9 +8,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
-
-import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     UDPListener listener;
@@ -20,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public static final char[] blankTagCodeCharArray = {'0','0','0','0','0','0','0','0','0','0'};
     public static final int fridgeControllerPort = 1111;
     private DatagramSocket sock;
+    private static final String fridgeControllerInetAddressString = "10.0.2.2";
     private InetAddress fridgeControllerInetAddress;
     //This app will eventually receive an update from the fridge, and interpret that signal to
     // an update message. This will be displayed on the screen of the phone.
@@ -46,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
             sock = new DatagramSocket();
         }catch(SocketException e){
             System.out.println("Socket Error");
+        }
+
+        try{
+            fridgeControllerInetAddress = InetAddress.getByName(fridgeControllerInetAddressString);
+        }catch(UnknownHostException e){
+            //do something
         }
     }
 
@@ -80,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("Error sending on socket");
         }
 
-        ArrayList<FoodItem> items = new ArrayList<FoodItem>();
+        ArrayList<FoodItem> items = new ArrayList<>();
 
         while(true){
             try{
@@ -115,9 +121,8 @@ public class MainActivity extends AppCompatActivity {
                 FoodItem a = array.get(i);
                 FoodItem b = array.get(i+1);
                 if(a.expiresInDays()>b.expiresInDays()){
-                    FoodItem temp = a;
                     array.set(i,b);
-                    array.set(i+1,temp);
+                    array.set(i+1,a);
                 }
             }
             int dummyVar = 0;
