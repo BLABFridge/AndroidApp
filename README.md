@@ -19,7 +19,7 @@ This window will have a back button to get back to the main screen.
 #####Format
 	6[0][String missingTagCode][0][padding to 100 bytes]
 
-1 - FoodItem Returned : Generally in response to a 6 packet, and the same format as a 1 packet 
+7 - FoodItem Returned : Generally in response to a 6 packet, and the same format as a 1 packet 
 #####Format
 	7[0][String FoodItem name][0][String lifetimeInDays][0][padding to 100 bytes]
 
