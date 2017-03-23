@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         buf[1] = FoodItem.opcodeDelimiter.getBytes()[0];
         byte[] daysAsBytes = Integer.toString(days).getBytes();
         System.arraycopy(daysAsBytes, 0, buf, 2, daysAsBytes.length);
+        buf[daysAsBytes.length + 2] = FoodItem.opcodeDelimiter.getBytes()[0];
         DatagramPacket p = new DatagramPacket(buf, buf.length, fridgeControllerInetAddress, fridgeControllerPort);
         try{
             sock.send(p);
