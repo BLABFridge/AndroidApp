@@ -26,3 +26,6 @@ This window will have a back button to get back to the main screen.
 8 - Enter adding mode - sent to the listener from the android app to automatically enter adding mode
 #####Format
 	8[0][Optional timeout][0][padding to 100 bytes]
+
+Note on services for the notifications --> https://developer.android.com/guide/components/services.html
+Note on notifications --> https://developer.android.com/guide/topics/ui/notifiers/notifications.html
