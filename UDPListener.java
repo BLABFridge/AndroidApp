@@ -1,5 +1,3 @@
-package com.example.benjamin.blabfridgeapp;
-
 /**
  * Created by Benjamin on 2017-03-22.
  */
