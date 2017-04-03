@@ -17,19 +17,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button3"
+        android:onClick="searchFridge"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <!-- This field will give us the term the person is searching for. -->
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Search Item"
+        android:ems="10"
         android:layout_alignTop="@+id/button3"
-        android:layout_toLeftOf="@+id/button3"
-        android:layout_toStartOf="@+id/button3"
-        android:id="@+id/searchView" />
-
+        android:id="@+id/editText2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <!-- This button will take the list the fridge gives us, sort it, and
     display the sorted list. -->
@@ -50,23 +53,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
-        android:onClick="sendMessage1"
+        android:onClick="listExpiring"
         android:layout_below="@+id/button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="118dp" />
 
-    <!-- This Text View will let you specify the number of days of interest until the item
+    <!-- This Edit View will let you specify the number of days of interest until the item
     expires. -->
-    <TextView
-        android:text="TextView"
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Days"
+        android:ems="10"
         android:layout_alignTop="@+id/button2"
         android:layout_toRightOf="@+id/button2"
-        android:layout_marginTop="12dp"
-        android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/editText" />
 </RelativeLayout>
