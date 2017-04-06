@@ -17,7 +17,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra("listFood");
         textView = new TextView(this);
-        textView.setTextSize(10);
+        textView.setTextSize(20);
         textView.setMovementMethod(new ScrollingMovementMethod());
         textView.setText(message);
 
