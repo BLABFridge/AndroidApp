@@ -17,6 +17,7 @@ import java.io.IOException;
 import android.R;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
+import static java.lang.System.exit;
 
 class UDPListener extends Thread{
 
@@ -36,8 +37,8 @@ class UDPListener extends Thread{
         try{
             sock = new DatagramSocket(listenPort);
         } catch (SocketException e){
-            System.out.println("Socket does not exist.");
-            //AAHAHHAHAHH BAD THINGS
+            System.out.println("Couldn't bind to the Listener Port.");
+            exit(0);
         }
     }
 
@@ -54,7 +55,6 @@ class UDPListener extends Thread{
                 sock.receive(p);
             } catch (IOException e) {
                 System.out.println("Failed to recieve a packet.");
-                ///MORE BAD THINGS AAAAH
             }
 
             byte[] buf = p.getData();
