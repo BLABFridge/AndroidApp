@@ -12,7 +12,10 @@ public class EdamamAPIRequester {
 	private final static String DEFAULT_PORTION = "large";
 	private final static int DEFAULT_QUANTITY = 1;
 	private final String USER_AGENT = "Mozilla/5.0";
-
+	
+	// No constructor, use standard super call to Object.
+	
+	// Create HTTP Request connection and formulate a GET request.
 	private NutritionAPI getNutrition(String food, String portion, int quantity) {
 		String url = "https://api.edamam.com/api/nutrition-data?" + 
 				"app_id=45f3fb1f&app_key=37c77492528f52024ffdd002d0a5e3d9&ingr=" +
@@ -52,6 +55,7 @@ public class EdamamAPIRequester {
 			e.getMessage();
 		}
 		
+		// Iterate through API request response and pack into NutritionAPI helper class for return.
 		String line;
 		StringBuffer getResponse = new StringBuffer();
 		try {
